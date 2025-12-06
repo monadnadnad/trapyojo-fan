@@ -17,18 +17,14 @@ const formattedDate = computed(() => {
     <header class="flex items-center gap-3">
       <img
         src="/trapyojo_400x400.jpg"
-        alt="trapyojoのアイコン"
-        class="h-10 w-10 rounded-full border border-border object-cover"
+        alt="trapypojoのアイコン"
+        class="h-12 w-12 rounded-full border border-border object-cover"
         loading="lazy"
       >
       <div class="flex flex-col leading-tight">
-        <NuxtLink
-          to="https://x.com/trapyojo"
-          target="_blank"
-          class="font-bold hover:underline"
-        >
+        <span class="font-bold">
           traPスーパーようじょbotロリ子
-        </NuxtLink>
+        </span>
         <span class="text-xs text-muted-foreground">
           @trapyojo
         </span>
