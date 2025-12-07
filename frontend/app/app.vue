@@ -1,7 +1,13 @@
 <script setup lang="ts">
 const { safeMode } = useSafeMode()
+const route = useRoute()
 
-const title = "trapyojo の何か"
+const navItems = [
+  { label: "ホーム", to: "/" },
+  { label: "ツイート一覧", to: "/tweets" },
+]
+
+const title = "ロリ子、生き返れ。"
 
 useSeoMeta({
   titleTemplate: (titleChunk) => {
@@ -14,7 +20,7 @@ useSeoMeta({
   <NuxtRouteAnnouncer />
   <div class="min-h-screen bg-background text-foreground">
     <header class="w-full border-b border-border bg-card">
-      <div class="mx-auto w-full max-w-7xl space-y-2 pb-2">
+      <div class="mx-auto w-full max-w-7xl space-y-2 pb-3">
         <div class="relative min-w-sm h-28 sm:h-36 md:h-44 lg:h-52 overflow-hidden border border-border/70">
           <img
             src="/header.png"
@@ -22,10 +28,27 @@ useSeoMeta({
             class="absolute inset-0 h-full w-full object-cover object-[50%_20%]"
           >
         </div>
-        <SafeModeBar
-          v-model:safe-mode="safeMode"
-          class="justify-end"
-        />
+        <div class="flex flex-wrap items-center justify-between gap-3 px-2 sm:px-0">
+          <NavigationMenu>
+            <NavigationMenuList class="flex items-center gap-2 rounded-xl bg-muted/50 p-1 backdrop-blur">
+              <NavigationMenuItem
+                v-for="item in navItems"
+                :key="item.to"
+              >
+                <NavigationMenuLink as-child>
+                  <NuxtLink
+                    :to="item.to"
+                    class="inline-flex min-w-24 items-center justify-center rounded-lg text-sm font-medium"
+                    :class="route.path === item.to ? 'bg-accent/70 text-accent-foreground shadow-sm' : 'bg-card/70 text-foreground'"
+                  >
+                    {{ item.label }}
+                  </NuxtLink>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          <SafeModeBar v-model:safe-mode="safeMode" />
+        </div>
       </div>
     </header>
 
@@ -35,7 +58,7 @@ useSeoMeta({
 
     <footer class="w-full border-t border-border bg-card/40">
       <div class="mx-auto flex justify-center max-w-7xl px-2 sm:px-4 lg:px-6 py-6 text-xs text-muted-foreground">
-        <p>traPスーパーようじょbotロリ子の発言をまとめている非公式サイトです。</p>
+        <p>traPスーパーようじょbotロリ子の発言をまとめている traP とは無関係の非公式サイトです。</p>
       </div>
     </footer>
   </div>

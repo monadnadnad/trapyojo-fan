@@ -13,12 +13,12 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-  <article class="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm">
-    <header class="flex items-center gap-3">
+  <Card class="mx-auto w-full max-w-xl shadow-sm gap-0">
+    <CardHeader class="flex flex-row items-center gap-3 pb-2">
       <img
         src="/trapyojo_400x400.jpg"
-        alt="trapypojoのアイコン"
-        class="h-12 w-12 rounded-full border border-border object-cover"
+        alt="trapyojoのアイコン"
+        class="h-12 w-12 rounded-full border object-cover"
         loading="lazy"
       >
       <div class="flex flex-col leading-tight">
@@ -29,30 +29,35 @@ const formattedDate = computed(() => {
           @trapyojo
         </span>
       </div>
-    </header>
-    <div class="whitespace-pre-line text-lg leading-relaxed text-foreground">
-      {{ tweet.text }}
-    </div>
+    </CardHeader>
 
-    <div class="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
-      <span>{{ formattedDate }}</span>
-      <NuxtLink
-        :to="tweet.sourceUrl"
-        target="_blank"
-        class="font-bold hover:underline"
-      >
-        元ツイートを見る ↗
-      </NuxtLink>
-    </div>
+    <CardContent>
+      <p class="whitespace-pre-line text-lg leading-relaxed text-foreground">
+        {{ tweet.text }}
+      </p>
+    </CardContent>
 
-    <ul class="flex flex-wrap gap-2 text-xs text-muted-foreground">
-      <li
-        v-for="tag in tweet.tags"
-        :key="tag"
-        class="rounded-full border border-border/70 px-3 py-1 uppercase tracking-wide"
-      >
-        #{{ tag }}
-      </li>
-    </ul>
-  </article>
+    <CardFooter class="flex flex-col gap-3 pt-4 text-sm text-muted-foreground">
+      <div class="flex w-full flex-wrap items-center justify-between gap-3">
+        <span v-if="formattedDate">{{ formattedDate }}</span>
+        <NuxtLink
+          :to="tweet.sourceUrl"
+          target="_blank"
+          class="font-bold hover:underline"
+        >
+          元ツイートを見る ↗
+        </NuxtLink>
+      </div>
+
+      <div class="flex w-full flex-wrap gap-1">
+        <Badge
+          v-for="tag in tweet.tags"
+          :key="tag"
+          variant="outline"
+        >
+          #{{ tag }}
+        </Badge>
+      </div>
+    </CardFooter>
+  </Card>
 </template>

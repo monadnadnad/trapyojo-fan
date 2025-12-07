@@ -5,7 +5,7 @@
     "sourceUrl": "https://x.com/trapyojo/status/1681390341839282176",
     "postedAt": "2023-07-18T19:47:50.000Z",
     "isNSFW": false,
-    "tags": []
+    "tags": ["生前最後のツイート"]
   },
   {
     "status": 1681375247721992192,
@@ -16,10 +16,26 @@
     "tags": []
   },
   {
+    "status": 1673167215317905400,
+    "text": "さっそくスヤァしたい",
+    "sourceUrl": "https://x.com/trapyojo/status/1673167215317905409",
+    "postedAt": "2023-06-26T03:12:04.000Z",
+    "isNSFW": false,
+    "tags": []
+  },
+  {
+    "status": 1662708275010506800,
+    "text": "覚醒剤を讃えよ",
+    "sourceUrl": "https://x.com/trapyojo/status/1662708275010506752",
+    "postedAt": "2023-05-28T06:31:59.000Z",
+    "isNSFW": false,
+    "tags": []
+  },
+  {
     "status": 1656881522140647424,
     "text": "まんげ",
     "sourceUrl": "https://x.com/trapyojo/status/1656881522140647424",
-    "postedAt": "2023-07-18T18:47:52.000Z",
+    "postedAt": "2023-05-12T04:38:32.000Z",
     "isNSFW": true,
     "tags": ["NSFW"]
   },
@@ -37,6 +53,14 @@
     "sourceUrl": "https://x.com/trapyojo/status/1185383628781453312",
     "postedAt": "2019-10-19T02:34:15.000Z",
     "isNSFW": false,
-    "tags": ["リプ"]
+    "tags": ["リプが面白いツイート"]
+  },
+  {
+    "status": 1116693777983230000,
+    "text": "君の方がﾂｲ廃だよ?自覚",
+    "sourceUrl": "https://x.com/trapyojo/status/1116693777983229955",
+    "postedAt": "2019-04-12T13:25:18.000Z",
+    "isNSFW": false,
+    "tags": []
   }
 ]
