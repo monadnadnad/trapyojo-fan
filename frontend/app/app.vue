@@ -13,6 +13,10 @@ useSeoMeta({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} - ${title}` : title
   },
+  ogTitle: title,
+  description: "traPスーパーようじょbotロリ子の発言をまとめる非公式サイトの予定です。",
+  ogImage: "/header.png",
+  ogDescription: "traPスーパーようじょbotロリ子の発言をまとめる非公式サイトの予定です。",
 })
 </script>
 
