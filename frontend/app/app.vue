@@ -7,16 +7,21 @@ const navItems = [
   { label: "ツイート一覧", to: "/tweets" },
 ]
 
-const title = "ロリ子、生き返れ。"
+const title = "ロリ子、生き返れ"
+const description = "traPスーパーようじょbotロリ子 @trapyojo を生き返らせるための非公式アーカイブサイトの予定です。"
 
 useSeoMeta({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} - ${title}` : title
   },
   ogTitle: title,
-  description: "traPスーパーようじょbotロリ子の発言をまとめる非公式サイトの予定です。",
-  ogImage: "/header.png",
-  ogDescription: "traPスーパーようじょbotロリ子の発言をまとめる非公式サイトの予定です。",
+  description: description,
+  ogImage: "https://ty-fan.dev/header.png",
+  ogDescription: description,
+  twitterCard: "summary_large_image",
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: "https://ty-fan.dev/header.png",
 })
 </script>
 
