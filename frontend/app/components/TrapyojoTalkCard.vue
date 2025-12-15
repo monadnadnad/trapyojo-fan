@@ -105,7 +105,7 @@ const speak = async () => {
             <NuxtLink
               :to="link"
               target="_blank"
-              class="inline-flex items-center gap-1 font-medium hover:underline hover:text-foreground"
+              class="inline-flex items-center gap-1 font-semibold hover:underline hover:text-foreground"
             >
               <span>元ツイートを見る↗</span>
             </NuxtLink>

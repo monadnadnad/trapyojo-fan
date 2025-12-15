@@ -37,9 +37,9 @@ useSeoMeta({
             class="absolute inset-0 h-full w-full object-cover object-[50%_20%]"
           >
         </div>
-        <div class="flex flex-wrap items-center justify-between gap-3 px-2 sm:px-0">
+        <div class="flex flex-wrap items-center justify-between gap-3 px-2 sm:px-1">
           <NavigationMenu>
-            <NavigationMenuList class="flex items-center gap-2 rounded-xl bg-muted/50 p-1 backdrop-blur">
+            <NavigationMenuList class="flex items-center gap-2 rounded-lg bg-muted p-1">
               <NavigationMenuItem
                 v-for="item in navItems"
                 :key="item.to"
@@ -47,7 +47,7 @@ useSeoMeta({
                 <NavigationMenuLink as-child>
                   <NuxtLink
                     :to="item.to"
-                    class="inline-flex min-w-24 items-center justify-center rounded-lg text-sm font-medium"
+                    class="inline-flex min-w-24 items-center justify-center rounded-lg font-semibold"
                     :class="route.path === item.to ? 'bg-accent/70 text-accent-foreground shadow-sm' : 'bg-card/70 text-foreground'"
                   >
                     {{ item.label }}
@@ -67,7 +67,7 @@ useSeoMeta({
 
     <footer class="w-full border-t border-border bg-card/40">
       <div class="mx-auto flex justify-center max-w-7xl px-2 sm:px-4 lg:px-6 py-6 text-xs text-muted-foreground">
-        <p>traPスーパーようじょbotロリ子の発言をまとめている traP とは無関係の非公式サイトです。</p>
+        <p>traPスーパーようじょbotロリ子の発言をまとめている、 traP とは無関係の非公式サイトです。</p>
       </div>
     </footer>
   </div>

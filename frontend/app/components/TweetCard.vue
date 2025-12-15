@@ -13,8 +13,8 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-  <Card class="mx-auto w-full max-w-xl shadow-sm gap-0">
-    <CardHeader class="flex flex-row items-center gap-3 pb-2">
+  <Card class="mx-auto w-full max-w-xl shadow-sm gap-2">
+    <CardHeader class="flex flex-row items-center gap-2 pb-2">
       <img
         src="/trapyojo_400x400.jpg"
         alt="trapyojoのアイコン"
@@ -25,14 +25,14 @@ const formattedDate = computed(() => {
         <span class="font-bold">
           traPスーパーようじょbotロリ子
         </span>
-        <span class="text-xs text-muted-foreground">
+        <span class="text-sm text-muted-foreground">
           @trapyojo
         </span>
       </div>
     </CardHeader>
 
     <CardContent>
-      <p class="whitespace-pre-line text-lg leading-relaxed text-foreground">
+      <p class="whitespace-pre-line leading-relaxed text-foreground">
         {{ tweet.text }}
       </p>
     </CardContent>
@@ -43,7 +43,7 @@ const formattedDate = computed(() => {
         <NuxtLink
           :to="tweet.sourceUrl"
           target="_blank"
-          class="font-bold hover:underline"
+          class="font-semibold hover:underline"
         >
           元ツイートを見る ↗
         </NuxtLink>
