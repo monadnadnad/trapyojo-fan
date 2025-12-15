@@ -2,7 +2,7 @@
 import tailwindcss from "@tailwindcss/vite"
 
 export default defineNuxtConfig({
-  modules: ["@nuxt/eslint", "shadcn-nuxt", "@nuxt/icon"],
+  modules: ["@nuxt/eslint", "shadcn-nuxt", "@nuxt/icon", "@nuxt/fonts"],
   devtools: { enabled: true },
   app: {
     head: {
