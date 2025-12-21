@@ -6,27 +6,29 @@ useSeoMeta({
 const { safeMode } = useSafeMode()
 const { getAll } = useTweets()
 
-const tweets = computed(() => getAll({ safeMode: safeMode.value }))
+const { data: tweets } = await useAsyncData(
+  () => `tweets-${safeMode.value ? "safe" : "all"}`,
+  () => getAll({ safeMode: safeMode.value }),
+  { watch: [safeMode] },
+)
 </script>
 
 <template>
   <div class="mx-auto flex max-w-5xl flex-col gap-6">
-    <h1 class="text-xl font-semibold text-foreground">
-      ツイート一覧
-    </h1>
     <div
-      v-if="tweets.length"
-      class="grid gap-4"
+      v-if="tweets?.length"
+      class="grid gap-2"
     >
       <TweetCard
         v-for="tweet in tweets"
-        :key="tweet.status"
+        :key="tweet.tweet_id"
         :tweet="tweet"
       />
     </div>
+
     <div
       v-else
-      class="rounded-2xl border border-dashed border-border bg-card p-6 text-center text-muted-foreground"
+      class="border border-dashed bg-card p-6 text-center"
     >
       表示できるツイートがありません。
     </div>

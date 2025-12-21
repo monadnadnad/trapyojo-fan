@@ -1,5 +1,5 @@
 export type Tweet = Readonly<{
-  status: number
+  tweet_id: string
   text: string
   sourceUrl: string
   postedAt: string

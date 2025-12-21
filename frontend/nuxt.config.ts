@@ -2,7 +2,7 @@
 import tailwindcss from "@tailwindcss/vite"
 
 export default defineNuxtConfig({
-  modules: ["@nuxt/eslint", "shadcn-nuxt", "@nuxt/icon", "@nuxt/fonts"],
+  modules: ["@nuxt/eslint", "shadcn-nuxt", "@nuxt/icon", "@nuxt/fonts", "@nuxt/content"],
   devtools: { enabled: true },
   app: {
     head: {
@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     },
   },
   css: ["~/assets/css/tailwind.css"],
+  content: { experimental: { sqliteConnector: "native" } },
   compatibilityDate: "2025-07-15",
   vite: {
     plugins: [

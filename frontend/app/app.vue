@@ -30,7 +30,7 @@ useSeoMeta({
   <div class="min-h-screen bg-background text-foreground">
     <header class="w-full border-b border-border bg-card">
       <div class="mx-auto w-full max-w-7xl space-y-2 pb-3">
-        <div class="relative min-w-sm h-28 sm:h-36 md:h-44 lg:h-52 overflow-hidden border border-border/70">
+        <div class="relative min-w-sm h-28 sm:h-36 md:h-44 lg:h-52 overflow-hidden">
           <img
             src="/header.png"
             alt="ヘッダー画像"

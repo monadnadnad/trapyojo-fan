@@ -1,33 +1,34 @@
-import tweets from "@/data/tweets.json"
-// テスト用
-const tweetsData = tweets as Tweet[]
-
 type TweetFilters = {
   readonly safeMode?: boolean
 }
 
-const applySafeMode = (tweets: Tweet[], { safeMode }: TweetFilters) => {
-  if (!safeMode) {
-    return tweets
-  }
-
-  return tweets.filter(tweet => !tweet.isNSFW)
-}
-
 export const useTweets = () => {
-  const getAll = (filters: TweetFilters = {}) => {
-    return applySafeMode(tweetsData, filters)
+  const baseQuery = (filters: TweetFilters = {}) => {
+    let query = queryCollection("tweets")
+    if (filters.safeMode) {
+      query = query.where("isNSFW", "=", false)
+    }
+    return query
   }
 
-  const getRandom = (filters: TweetFilters = {}) => {
-    const filteredTweets = applySafeMode(tweetsData, filters)
-    const randomIndex = Math.floor(Math.random() * filteredTweets.length)
+  const getAll = async (filters: TweetFilters = {}) => {
+    return baseQuery(filters).order("postedAt", "DESC").all()
+  }
 
-    return filteredTweets[randomIndex] || null
+  const getById = async (id: string, filters: TweetFilters = {}) => {
+    return baseQuery(filters).where("tweet_id", "=", id).first()
+  }
+
+  const getRandom = async (filters: TweetFilters = {}) => {
+    const tweets = await getAll(filters)
+    if (!tweets.length) return null
+    const randomIndex = Math.floor(Math.random() * tweets.length)
+    return tweets[randomIndex]
   }
 
   return {
     getAll,
+    getById,
     getRandom,
   }
 }

@@ -1,19 +1,17 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   tweet: Tweet
 }>()
-
-const formattedDate = computed(() => {
-  const date = new Date(props.tweet.postedAt)
-  return new Intl.DateTimeFormat("ja-JP", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(date)
-})
 </script>
 
 <template>
-  <Card class="mx-auto w-full max-w-xl shadow-sm gap-2">
+  <Card
+    class="mx-auto w-full max-w-xl shadow-sm gap-2 cursor-pointer"
+    tabindex="0"
+    @click="$router.push(`/tweets/${tweet.tweet_id}`)"
+    @keydown.enter="$router.push(`/tweets/${tweet.tweet_id}`)"
+    @keydown.space="$router.push(`/tweets/${tweet.tweet_id}`)"
+  >
     <CardHeader class="flex flex-row items-center gap-2 pb-2">
       <img
         src="/trapyojo_400x400.jpg"
@@ -39,11 +37,13 @@ const formattedDate = computed(() => {
 
     <CardFooter class="flex flex-col gap-3 pt-4 text-sm text-muted-foreground">
       <div class="flex w-full flex-wrap items-center justify-between gap-3">
-        <span v-if="formattedDate">{{ formattedDate }}</span>
+        <span>{{ formatDateTime(tweet.postedAt) }}</span>
         <NuxtLink
           :to="tweet.sourceUrl"
           target="_blank"
           class="font-semibold hover:underline"
+          @click.stop
+          @keydown.stop
         >
           元ツイートを見る ↗
         </NuxtLink>
