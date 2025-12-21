@@ -61,7 +61,7 @@ const speak = async () => {
           disabled:opacity-80 disabled:saturate-100 disabled:brightness-100
           disabled:cursor-default
           focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none
-        "
+          "
           aria-label="トラップようじょをしゃべらせる"
           :aria-busy="isThinking"
           :disabled="isThinking"
@@ -90,7 +90,7 @@ const speak = async () => {
         </NuxtLink>
       </div>
       <div
-        class="relative w-full max-w-xl rounded-2xl border border-border bg-muted/70 px-5 py-4 text-base shadow-sm"
+        class="relative w-full max-w-xl rounded-2xl border border-border px-5 py-4 text-base shadow-sm"
         :class="{ 'animate-pulse': isThinking }"
         aria-live="polite"
       >

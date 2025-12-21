@@ -1,10 +1,13 @@
 {
-  "tweet_id": "1656881522140647400",
+  "tweet_id": "1656881522140647424",
   "text": "まんげ",
   "sourceUrl": "https://x.com/trapyojo/status/1656881522140647424",
   "postedAt": "2023-05-12T04:38:32.000Z",
   "isNSFW": true,
   "tags": [
     "NSFW"
-  ]
+  ],
+  "replyCount": 1,
+  "retweetCount": 5,
+  "likeCount": 2
 }
