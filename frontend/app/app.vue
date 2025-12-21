@@ -31,11 +31,13 @@ useSeoMeta({
     <header class="w-full border-b border-border bg-card">
       <div class="mx-auto w-full max-w-7xl space-y-2 pb-3">
         <div class="relative min-w-sm h-28 sm:h-36 md:h-44 lg:h-52 overflow-hidden">
-          <img
-            src="/header.png"
+          <NuxtImg
+            src="/header.webp"
             alt="ヘッダー画像"
+            width="2136"
+            height="600"
             class="absolute inset-0 h-full w-full object-cover object-[50%_20%]"
-          >
+          />
         </div>
         <div class="flex flex-wrap items-center justify-between gap-3 px-2 sm:px-1">
           <NavigationMenu>

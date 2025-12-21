@@ -28,7 +28,7 @@ function goHome() {
 
       <img
         class="mx-auto w-40 max-w-[80vw] drop-shadow-md sm:w-48"
-        src="/404.png"
+        src="/404.webp"
         alt="trapyojoが頭を抱えてる画像"
       >
 
