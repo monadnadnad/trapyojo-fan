@@ -37,6 +37,11 @@ export default defineNuxtConfig({
     mode: "css",
     cssLayer: "base",
   },
+  image: {
+    cloudinary: {
+      baseURL: "https://res.cloudinary.com/dsgc6z5yg/image/upload/",
+    },
+  },
   shadcn: {
     prefix: "",
     componentDir: "@/components/ui",

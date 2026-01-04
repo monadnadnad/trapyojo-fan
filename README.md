@@ -1,11 +1,11 @@
-![](frontend/public/header.png)
+![](https://res.cloudinary.com/dsgc6z5yg/image/upload/header.png)
 # trapyojo-fan
 
 Q. これはなんですか？
 
 A. ふぇぇ、わからないよぅ><
 
-<img src="frontend/public/404.png" alt="ふぇわ" width="200px">
+<img src="https://res.cloudinary.com/dsgc6z5yg/image/upload/404_transparent.png" alt="ふぇわ" width="200px">
 
 ---
 

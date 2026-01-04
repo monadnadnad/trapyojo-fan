@@ -26,11 +26,12 @@ function goHome() {
         </span>
       </p>
 
-      <img
+      <NuxtImg
         class="mx-auto w-40 max-w-[80vw] drop-shadow-md sm:w-48"
-        src="/404.webp"
+        provider="cloudinary"
+        src="/v1767538734/404_transparent.png"
         alt="trapyojoが頭を抱えてる画像"
-      >
+      />
 
       <Button
         class="px-6 font-semibold shadow-sm"

@@ -9,6 +9,7 @@ const navItems = [
 
 const title = "ロリ子、生き返れ"
 const description = "traPスーパーようじょbotロリ子 @trapyojo を生き返らせるための非公式アーカイブサイトの予定です。"
+const headerImage = "https://res.cloudinary.com/dsgc6z5yg/image/upload/header.png"
 
 useSeoMeta({
   titleTemplate: (titleChunk) => {
@@ -16,12 +17,12 @@ useSeoMeta({
   },
   ogTitle: title,
   description: description,
-  ogImage: "https://ty-fan.dev/header.png",
+  ogImage: headerImage,
   ogDescription: description,
   twitterCard: "summary_large_image",
   twitterTitle: title,
   twitterDescription: description,
-  twitterImage: "https://ty-fan.dev/header.png",
+  twitterImage: headerImage,
 })
 </script>
 
@@ -32,10 +33,9 @@ useSeoMeta({
       <div class="mx-auto w-full max-w-7xl space-y-2 pb-3">
         <div class="relative min-w-sm h-28 sm:h-36 md:h-44 lg:h-52 overflow-hidden">
           <NuxtImg
-            src="/header.webp"
+            provider="cloudinary"
+            src="/header.png"
             alt="ヘッダー画像"
-            width="2136"
-            height="600"
             class="absolute inset-0 h-full w-full object-cover object-[50%_20%]"
           />
         </div>
