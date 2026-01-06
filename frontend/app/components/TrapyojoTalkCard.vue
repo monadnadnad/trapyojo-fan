@@ -67,12 +67,12 @@ const speak = async () => {
           :disabled="isThinking"
           @click="speak"
         >
-          <img
+          <NuxtImg
             src="/trapyojo_400x400.jpg"
             alt="トラップようじょのアイコン"
             class="h-full w-full rounded-full border border-border object-cover"
             loading="lazy"
-          >
+          />
           <Badge class="absolute bottom-0 right-0 shadow-sm">
             TAP
           </Badge>

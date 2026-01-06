@@ -23,12 +23,12 @@ const handleCardActivate = (event: MouseEvent | KeyboardEvent) => {
     @keydown.space.prevent="handleCardActivate"
   >
     <CardHeader class="flex flex-row items-center gap-2 pb-2">
-      <img
+      <NuxtImg
         src="/trapyojo_400x400.jpg"
         alt="trapyojoのアイコン"
         class="h-12 w-12 rounded-full border object-cover"
         loading="lazy"
-      >
+      />
       <div class="flex flex-col leading-tight">
         <span class="font-bold">
           traPスーパーようじょbotロリ子
