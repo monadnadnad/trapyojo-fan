@@ -4,7 +4,8 @@ const route = useRoute()
 
 const navItems = [
   { label: "ホーム", to: "/" },
-  { label: "ツイート一覧", to: "/tweets" },
+  { label: "ツイート", to: "/tweets" },
+  { label: "最近みた夢", to: "/dreams" },
 ]
 
 const title = "ロリ子、生き返れ"

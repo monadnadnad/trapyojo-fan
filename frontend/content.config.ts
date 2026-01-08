@@ -17,5 +17,17 @@ export default defineContentConfig({
         likeCount: z.number(),
       }),
     }),
+    dreams: defineCollection({
+      type: "data",
+      source: "dreams/*.json",
+      schema: z.object({
+        title: z.string(),
+        type: z.enum(["image", "video"]),
+        src: z.string(),
+        comment: z.string().optional(),
+        publishedAt: z.string(),
+        createdBy: z.enum(["Sora2", "Nano Banana"]).optional(),
+      }),
+    }),
   },
 })
