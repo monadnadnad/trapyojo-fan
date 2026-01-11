@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Analytics } from "@vercel/analytics/nuxt"
+
 const { safeMode } = useSafeMode()
 const route = useRoute()
 
@@ -66,6 +68,7 @@ useSeoMeta({
 
     <main class="mx-auto w-full max-w-7xl px-2 sm:px-4 lg:px-6 py-10">
       <NuxtPage />
+      <Analytics />
     </main>
 
     <footer class="w-full border-t border-border bg-card/40">
