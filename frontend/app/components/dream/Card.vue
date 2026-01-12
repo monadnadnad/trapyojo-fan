@@ -3,6 +3,7 @@ const props = defineProps<{
   dream: Dream
 }>()
 
+const open = ref(false)
 const videoBase = "https://res.cloudinary.com/dsgc6z5yg/video/upload/"
 const isVideo = computed(() => props.dream.type === "video")
 const videoUrl = computed(() =>
@@ -44,7 +45,7 @@ const handlePreviewLeave = (event: MouseEvent) => {
 </script>
 
 <template>
-  <Dialog>
+  <Dialog v-model:open="open">
     <DreamCardTrigger
       :dream="dream"
       :video-url="videoUrl"
@@ -54,6 +55,7 @@ const handlePreviewLeave = (event: MouseEvent) => {
     />
 
     <DreamContent
+      v-if="open"
       :dream="dream"
       :video-url="videoUrl"
       :video-poster-url="videoPosterUrl"

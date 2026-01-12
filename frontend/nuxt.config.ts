@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   content: { experimental: { sqliteConnector: "native" } },
   runtimeConfig: {
     public: {
-      apiBase: "",
+      apiBase: "http://localhost:8080/api",
     },
   },
   compatibilityDate: "2025-07-15",

@@ -27,8 +27,9 @@ const handleLike = async () => {
   window.setTimeout(() => {
     clapFloats.value = clapFloats.value.filter(item => item.id !== id)
   }, 1200)
-  const res = await postLikes(props.dream.dreamId)
-  data.value = res
+  const nextCount = (data.value?.count ?? 0) + 1
+  data.value = { dreamId: props.dream.dreamId, count: nextCount }
+  postLikes(props.dream.dreamId)
 }
 </script>
 
@@ -70,7 +71,6 @@ const handleLike = async () => {
             <Button
               variant="secondary"
               class="relative hover:-translate-y-0.5 "
-              :disabled="pending"
               @click="handleLike"
             >
               <span class="text-foreground font-bold text-xl">
@@ -93,7 +93,11 @@ const handleLike = async () => {
                     >👏</span>
                   </span>
                 </span>
-                <span>{{ data?.count ?? 0 }}</span>
+                <span
+                  v-if="pending"
+                  class="like-loading"
+                >…</span>
+                <span v-else>{{ data?.count ?? 0 }}</span>
               </span>
             </Button>
           </div>
@@ -141,6 +145,11 @@ const handleLike = async () => {
   animation-delay: var(--delay, 0ms);
 }
 
+.like-loading {
+  opacity: 0.6;
+  animation: like-pulse 900ms ease-in-out infinite;
+}
+
 @keyframes clap {
   0% {
     transform: scale(1) rotate(0deg);
@@ -172,9 +181,20 @@ const handleLike = async () => {
   }
 }
 
+@keyframes like-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .clap-active,
-  .clap-float {
+  .clap-float,
+  .like-loading {
     animation: none;
   }
 }
