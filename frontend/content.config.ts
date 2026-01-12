@@ -21,6 +21,7 @@ export default defineContentConfig({
       type: "data",
       source: "dreams/*.json",
       schema: z.object({
+        dreamId: z.string().max(36),
         title: z.string(),
         type: z.enum(["image", "video"]),
         src: z.string(),

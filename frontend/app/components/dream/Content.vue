@@ -4,6 +4,32 @@ const props = defineProps<{
   videoUrl?: string
   videoPosterUrl?: string
 }>()
+
+const { getLikes, postLikes } = useLikes()
+const { data, pending } = getLikes(props.dream.dreamId)
+const clapFloats = ref<{ id: number, x: number, delay: number }[]>([])
+const clapActive = ref(false)
+
+const handleLike = async () => {
+  clapActive.value = false
+  requestAnimationFrame(() => {
+    clapActive.value = true
+    window.setTimeout(() => {
+      clapActive.value = false
+    }, 320)
+  })
+  const id = Date.now()
+  clapFloats.value.push({
+    id,
+    x: Math.round((Math.random() - 0.5) * 36),
+    delay: Math.round(Math.random() * 80),
+  })
+  window.setTimeout(() => {
+    clapFloats.value = clapFloats.value.filter(item => item.id !== id)
+  }, 1200)
+  const res = await postLikes(props.dream.dreamId)
+  data.value = res
+}
 </script>
 
 <template>
@@ -38,7 +64,38 @@ const props = defineProps<{
             v-if="props.dream.createdBy"
             class="text-xs text-muted-foreground/80"
           >
-            Created By {{ props.dream.createdBy }}
+            {{ formatDate(props.dream.publishedAt) }} Created by {{ props.dream.createdBy }}
+          </div>
+          <div class="flex items-center gap-2">
+            <Button
+              variant="secondary"
+              class="relative hover:-translate-y-0.5 "
+              :disabled="pending"
+              @click="handleLike"
+            >
+              <span class="text-foreground font-bold text-xl">
+                <span
+                  class="relative inline-flex"
+                  aria-hidden="true"
+                >
+                  <span
+                    class="clap-emoji"
+                    :class="{ 'clap-active': clapActive }"
+                  >
+                    👏
+                  </span>
+                  <span class="pointer-events-none absolute inset-0">
+                    <span
+                      v-for="item in clapFloats"
+                      :key="item.id"
+                      class="clap-float absolute left-0 top-0 select-none text-2xl leading-none"
+                      :style="{ '--x': item.x + 'px', '--delay': item.delay + 'ms' }"
+                    >👏</span>
+                  </span>
+                </span>
+                <span>{{ data?.count ?? 0 }}</span>
+              </span>
+            </Button>
           </div>
         </DialogHeader>
 
@@ -61,21 +118,64 @@ const props = defineProps<{
                 </p>
               </div>
             </div>
-
-            <div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground/80">
-              <time
-                :datetime="props.dream.publishedAt"
-                class="rounded-full border bg-background px-2 py-0.5 font-medium text-foreground/80"
-              >
-                {{ formatDate(props.dream.publishedAt) }}
-              </time>
-              <span class="rounded-full border bg-background px-2 py-0.5 font-medium text-foreground/80 first-letter:uppercase">
-                {{ props.dream.type }}
-              </span>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </DialogContent>
 </template>
+
+<style scoped>
+.clap-emoji {
+  display: inline-block;
+  transform-origin: 40% 70%;
+}
+
+.clap-active {
+  animation: clap 300ms cubic-bezier(0.25, 0.9, 0.2, 1);
+}
+
+.clap-float {
+  opacity: 0;
+  animation: clap-float 1200ms ease-out forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes clap {
+  0% {
+    transform: scale(1) rotate(0deg);
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    transform: scale(1.15) rotate(10deg);
+    text-shadow:
+      -4px 0 0 color-mix(in oklab, var(--color-accent) 35%, transparent),
+      4px 0 0 color-mix(in oklab, var(--color-primary) 30%, transparent);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
+@keyframes clap-float {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x, 0px), -70px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clap-active,
+  .clap-float {
+    animation: none;
+  }
+}
+</style>

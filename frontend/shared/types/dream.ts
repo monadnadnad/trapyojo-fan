@@ -1,4 +1,5 @@
 export type Dream = Readonly<{
+  dreamId: string
   title: string
   type: "image" | "video"
   src: string
