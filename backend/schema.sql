@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS likes;
+CREATE TABLE likes (
+  dream_id   VARCHAR(36) NOT NULL PRIMARY KEY,
+  likes_count BIGINT NOT NULL DEFAULT 0
+);
