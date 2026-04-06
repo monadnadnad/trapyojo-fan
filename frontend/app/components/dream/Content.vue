@@ -4,33 +4,6 @@ const props = defineProps<{
   videoUrl?: string
   videoPosterUrl?: string
 }>()
-
-const { getLikes, postLikes } = useLikes()
-const { data, pending } = getLikes(props.dream.dreamId)
-const clapFloats = ref<{ id: number, x: number, delay: number }[]>([])
-const clapActive = ref(false)
-
-const handleLike = async () => {
-  clapActive.value = false
-  requestAnimationFrame(() => {
-    clapActive.value = true
-    window.setTimeout(() => {
-      clapActive.value = false
-    }, 320)
-  })
-  const id = Date.now()
-  clapFloats.value.push({
-    id,
-    x: Math.round((Math.random() - 0.5) * 36),
-    delay: Math.round(Math.random() * 80),
-  })
-  window.setTimeout(() => {
-    clapFloats.value = clapFloats.value.filter(item => item.id !== id)
-  }, 1200)
-  const nextCount = (data.value?.count ?? 0) + 1
-  data.value = { dreamId: props.dream.dreamId, count: nextCount }
-  postLikes(props.dream.dreamId)
-}
 </script>
 
 <template>
@@ -67,40 +40,6 @@ const handleLike = async () => {
           >
             {{ formatDate(props.dream.publishedAt) }} Created by {{ props.dream.createdBy }}
           </div>
-          <div class="flex items-center gap-2">
-            <Button
-              variant="secondary"
-              class="relative hover:-translate-y-0.5 "
-              @click="handleLike"
-            >
-              <span class="text-foreground font-bold text-xl">
-                <span
-                  class="relative inline-flex"
-                  aria-hidden="true"
-                >
-                  <span
-                    class="clap-emoji"
-                    :class="{ 'clap-active': clapActive }"
-                  >
-                    👏
-                  </span>
-                  <span class="pointer-events-none absolute inset-0">
-                    <span
-                      v-for="item in clapFloats"
-                      :key="item.id"
-                      class="clap-float absolute left-0 top-0 select-none text-2xl leading-none"
-                      :style="{ '--x': item.x + 'px', '--delay': item.delay + 'ms' }"
-                    >👏</span>
-                  </span>
-                </span>
-                <span
-                  v-if="pending"
-                  class="like-loading"
-                >…</span>
-                <span v-else>{{ data?.count ?? 0 }}</span>
-              </span>
-            </Button>
-          </div>
         </DialogHeader>
 
         <div class="max-h-[35vh] flex-1 overflow-y-auto md:max-h-none">
@@ -128,74 +67,3 @@ const handleLike = async () => {
     </div>
   </DialogContent>
 </template>
-
-<style scoped>
-.clap-emoji {
-  display: inline-block;
-  transform-origin: 40% 70%;
-}
-
-.clap-active {
-  animation: clap 300ms cubic-bezier(0.25, 0.9, 0.2, 1);
-}
-
-.clap-float {
-  opacity: 0;
-  animation: clap-float 1200ms ease-out forwards;
-  animation-delay: var(--delay, 0ms);
-}
-
-.like-loading {
-  opacity: 0.6;
-  animation: like-pulse 900ms ease-in-out infinite;
-}
-
-@keyframes clap {
-  0% {
-    transform: scale(1) rotate(0deg);
-    text-shadow: 0 0 0 transparent;
-  }
-  50% {
-    transform: scale(1.15) rotate(10deg);
-    text-shadow:
-      -4px 0 0 color-mix(in oklab, var(--color-accent) 35%, transparent),
-      4px 0 0 color-mix(in oklab, var(--color-primary) 30%, transparent);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    text-shadow: 0 0 0 transparent;
-  }
-}
-
-@keyframes clap-float {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--x, 0px), -70px);
-  }
-}
-
-@keyframes like-pulse {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.9;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .clap-active,
-  .clap-float,
-  .like-loading {
-    animation: none;
-  }
-}
-</style>
