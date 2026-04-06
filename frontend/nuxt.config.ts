@@ -20,6 +20,11 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/tailwind.css"],
   content: { experimental: { sqliteConnector: "native" } },
+  runtimeConfig: {
+    public: {
+      apiBase: "http://localhost:8080/api",
+    },
+  },
   compatibilityDate: "2025-07-15",
   vite: {
     plugins: [
